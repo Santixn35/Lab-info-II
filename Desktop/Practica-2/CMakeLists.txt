@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_executable(Practica-2
-    Problema-4.cpp
+
     Problema-6.cpp
     Problema-8.cpp
     Problema-10.cpp
