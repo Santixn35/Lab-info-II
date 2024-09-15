@@ -1,0 +1,60 @@
+Ejercicios tinkercad
+
+Ejercicio 3: 
+int led = 3; //led señal digital
+int pot = 0; //potenciometro señal analogica A0
+
+int brillo;
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(led,OUTPUT);
+  //los pins analógicos se declaran como entrada automáticamente
+}
+
+void loop() {
+  brillo = analogRead(pot)/4; //con valores de 0 a 1023
+  Serial.print("brillo: "); Serial.println(brillo); //impribe en el monitor serial
+  analogWrite(led, brillo); //con valores de 0 a 255
+}
+
+
+Problema 6:
+String cadena;  // Para almacenar la cadena ingresada
+String cadenaMayuscula;  // Para almacenar la cadena convertida
+
+void setup() {
+  Serial.begin(9600);  // Iniciamos el serial
+  Serial.println("Ingresa una cadena de caracteres:");
+}
+
+void loop() {
+  // Comprobamos si hay datos disponibles en el buffer serial
+  if (Serial.available() > 0) {
+    cadena = Serial.readString();  // Leemos la cadena ingresada
+    cadenaMayuscula = "";  // Reiniciamos la cadena convertida
+
+    // Recorremos cada carácter de la cadena
+    for (int i = 0; i < cadena.length(); i++) {
+      char c = cadena[i];
+
+      // Si es una letra minúscula, la convertimos a mayúscula
+      if (c >= 'a' && c <= 'z') {
+        cadenaMayuscula += char(c - 32);
+      } else {
+        cadenaMayuscula += c;  
+      }
+    }
+
+    // Mostramos los resultados
+    Serial.print("Original: ");
+    Serial.println(cadena);
+    
+    Serial.print("En mayuscula: ");
+    Serial.println(cadenaMayuscula);
+    
+    delay(5000);  // Esperamos 5 segundos antes de volver a pedir datos
+    Serial.println("Ingresa otra cadena de caracteres:");
+  }
+}
+
